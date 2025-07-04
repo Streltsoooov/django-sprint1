@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} Детали {% endblock %}
+{% block content %}
+<ul>
+    <li>Место: {{post.location}}</li>
+    <li>Дата: {{post.date}}</li>
+    <li>Категория: <a href = "{% url 'blog:category_posts' post.category %}"> {{post.category}}</a></li>
+</ul>
+{{publication_more.text}}
+{% endblock %}
