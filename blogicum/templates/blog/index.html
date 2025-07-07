@@ -5,10 +5,10 @@
   <ul>
     {% for publication in post %}
       <hr>
-        <li>Место: {{publication.location}}</li>
-        <li>Дата: {{publication.date}}</li>
-        <li>Категория:<a href = "{% url 'blog:category_posts' publication.category %}"> {{publication.category}} </a></li>
-        <p>{{publication.text|truncatewords:10}}</p>
+        <li >Место: {{publication.location}} </li>
+        <li> Дата: {{publication.date}}</li>
+        <li> Категория:<a href = "{% url 'blog:category_posts' publication.category %}"> {{publication.category}} </a></li>
+        <p> {{publication.text|truncatewords:10}}</p>
         <a href = "{% url 'blog:post_detail' publication.id %}"> 
           Читать полный текст
         </a>

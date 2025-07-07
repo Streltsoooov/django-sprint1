@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import Http404
 
 
 posts = [
@@ -31,7 +32,7 @@ posts = [
                 гиблого места.''',
     },
     {
-        'id': 2,
+        'id': 5,
         'location': 'Остров отчаянья',
         'date': '25 октября 1659 года',
         'category': 'not-my-day',
@@ -44,27 +45,24 @@ posts = [
     },
 ]
 
+reserv_post = posts[::-1]
+
+post_id = {post['id']: post for post in reserv_post}
+
 
 def index(request):
-    template = 'blog/index.html'
-    reserv_post = sorted(posts, key=lambda x: x['id'], reverse=True)
-    context = {
-        'post': reserv_post
-    }
-    return render(request, template, context)
+    return render(request, 'blog/index.html', {'post': reserv_post})
 
 
 def post_detail(request, id):
-    template = 'blog/detail.html'
-    context = {
-        'post': posts[id]
-    }
-    return render(request, template, context)
+    if id not in post_id.keys():
+        raise Http404
+    return render(request, 'blog/detail.html', {'post': post_id[id]})
 
 
 def category_posts(request, category_slug):
-    template = 'blog/category.html'
     context = {
-        'category_name': category_slug
+        'category_name': category_slug,
+        'post': posts
     }
-    return render(request, template, context)
+    return render(request, 'blog/category.html', context)
