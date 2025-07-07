@@ -2,9 +2,9 @@
 {% block title %} Детали {% endblock %}
 {% block content %}
 <article>
-    <h4> Место: {{post.location}} </h4>
-    <p>  Дата: {{post.date}}
-    <br>  Категория: <a href = "{% url 'blog:category_posts' post.category %}"> {{post.category}} </a>
+    <h4>  Место: {{post.location}} </h4>
+    <p>   Дата: {{post.date}}
+    <br>   Категория: <a href = "{% url 'blog:category_posts' post.category %}"> {{post.category}} </a>
 </article>
 {{post.text|linebreaks}}
 {% endblock %}
