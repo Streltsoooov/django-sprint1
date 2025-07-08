@@ -47,7 +47,7 @@ posts = [
 
 reserv_post = posts[::-1]
 
-post_id = {post['id']: post for post in reserv_post}
+POST_ID = {post['id']: post for post in reserv_post}
 
 
 def index(request):
@@ -55,9 +55,9 @@ def index(request):
 
 
 def post_detail(request, id):
-    if id not in post_id.keys():
+    if id not in POST_ID:
         raise Http404
-    return render(request, 'blog/detail.html', {'post': post_id[id]})
+    return render(request, 'blog/detail.html', {'post': POST_ID[id]})
 
 
 def category_posts(request, category_slug):
